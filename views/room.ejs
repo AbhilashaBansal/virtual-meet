@@ -37,8 +37,8 @@
     
     <br><br>
     <div class="container hide-later">
-        <div class="row">
-            <div class="col">
+        <div class="row text-center justify-content-center">
+            <div class="col-md-4 col-sm-6">
                 <div class="text-center" id="my-video">
 
                 </div>
@@ -47,17 +47,39 @@
         <br><br>
         <div class="row">
             <div class="col text-center">
-                <h4>Enter your Name : </h4>
-                <input type="text"><br>
-                <button type="button" id="enter-btn" class="btn btn-info">Enter Call</button>
+                <h4 style="display: inline-block;">Enter your Name : </h4>
+                <input type="text" id="username"><br>
+                <button type="button" id="enter-btn" class="btn btn-info custom-btn">Enter Call</button>
             </div>
         </div>
         
     </div>
-    
+
+    <div class="container show-later">
+        <div class="row">
+            <div class="col">
+                <h4>In Call</h4>
+                <div class="text-center" id="videos-grid">
+
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
 </body>
 
+<script>
+    // jo room.ejs render karte samay bheja tha, retrieving it here 
+    const room_id = "<%= roomId %>";
+</script>
+<!-- jQuery  -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
 integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+<!-- Peer JS  -->
+<script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
+<!-- Socket IO  -->
+<script src="/socket.io/socket.io.js"></script>
 <script src="./JS/script.js"></script>
 </html>

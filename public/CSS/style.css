@@ -1,8 +1,10 @@
 
 /* Home Page CSS  */
-#create-btn, #join-btn {
+.custom-btn{
     margin: 2%;
     background-color: rgb(33, 118, 214);
+    min-width: 200px;
+    color: white;
 }
 
 #create-btn > a, #join-btn > a {
@@ -11,7 +13,6 @@
 }
 
 /* Room Page CSS  */
-
 video {
     height: 200px;
     width: 400px;
@@ -19,7 +20,11 @@ video {
     transform: scaleX(-1);
     
 }
+#my-video {
+    width: fit-content;
+    background-color: rgb(187, 187, 187);
+}
 
-/* #my-video {
-    
-} */
+#username {
+    font-size: large;
+}
