@@ -1,0 +1,25 @@
+
+/* Home Page CSS  */
+#create-btn, #join-btn {
+    margin: 2%;
+    background-color: rgb(33, 118, 214);
+}
+
+#create-btn > a, #join-btn > a {
+    text-decoration: none;
+    color: white;
+}
+
+/* Room Page CSS  */
+
+video {
+    height: 200px;
+    width: 400px;
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    
+}
+
+/* #my-video {
+    
+} */
