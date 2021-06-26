@@ -57,7 +57,19 @@
 
     <div class="container show-later">
         <div class="row">
-            <div class="col">
+            
+            <div class="col-md-3">
+                <canvas class="whiteboard" style="border: solid 1px black;"></canvas>
+                <div class="colors">
+                    <div class="color black"></div>
+                    <div class="color red"></div>
+                    <div class="color green"></div>
+                    <div class="color blue"></div>
+                    <div class="color yellow"></div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
                 <h4>In Call</h4>
                 <div class="text-center" id="videos-grid">
 
@@ -82,4 +94,5 @@ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="ano
 <!-- Socket IO  -->
 <script src="/socket.io/socket.io.js"></script>
 <script src="./JS/script.js"></script>
+<script src="./JS/whiteboard.js"></script>
 </html>

@@ -12,12 +12,14 @@ const peerServer = ExpressPeerServer(server, {
 app.use('/peerjs', peerServer);
 const { v4: uuidV4 } = require('uuid')
 
+// middlewares
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.set('view engine', 'ejs');
 
 app.use("/", express.static(__dirname + '/public'));
 
+// request to create a call
 app.get('/create_call', (req, res) => {
     res.redirect(`/${uuidV4()}`);
 })
@@ -26,11 +28,15 @@ app.get('/:room', (req, res) => {
     res.render('room', { roomId: req.params.room } );
 })
 
+// socket connection
 io.on('connection', (socket) => {
     socket.on('join-room', (roomId, userId, userName) => {
         socket.join(roomId);
         socket.to(roomId).emit('user-connected', userId);
+        console.log("A user is connected:", userName, "User ID:", userId, "Room ID:", roomId);
         
+        socket.on('drawing', (data) => socket.broadcast.emit('drawing', data));
+
         // add messages functionality
 
         // add disconnect fnlity
