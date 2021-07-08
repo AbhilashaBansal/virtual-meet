@@ -1,5 +1,10 @@
-
     // var socket = io();
+
+    $(".whiteboard").hide();
+    $("#wb-btn").click(function(){
+      $(".whiteboard").show();
+    })
+
     var canvas = document.getElementsByClassName('whiteboard')[0];
     var colors = document.getElementsByClassName('color');
     var context = canvas.getContext('2d');
@@ -26,8 +31,8 @@
   
     socket.on('drawing', onDrawingEvent);
   
-    window.addEventListener('resize', onResize, false);
-    onResize();
+    // window.addEventListener('resize', onResize, false);
+    // onResize();
   
   
     function drawLine(x0, y0, x1, y1, color, emit){

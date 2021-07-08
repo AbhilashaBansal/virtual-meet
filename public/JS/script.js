@@ -1,6 +1,7 @@
 const socket = io('/');
 
 $(".show-later").hide();
+$(".leave").hide();
 
 // Video Grids
 const preVideo = $("#my-video");
@@ -10,6 +11,7 @@ let username;
 let myVideoStream;
 let myVideo = document.createElement('video');
 myVideo.muted = true;
+
 
 // Peer JS stuff 
 let peer = new Peer (undefined, {
@@ -24,12 +26,12 @@ function addVideoStream(video, stream, element) {
   element = element || videosGrid;
   video.srcObject = stream
   video.addEventListener('loadedmetadata', () => {
-    // add functionality to keep video muted
     video.play()
   })
   element.append(video);
 }
 
+// mic, camera vaaste permissions
 navigator.mediaDevices.getUserMedia({
   video: true,
   audio: true
@@ -59,9 +61,10 @@ navigator.mediaDevices.getUserMedia({
 
 
 // fn to connect w/ a new incoming user
-function callNewUser (userId, stream) {
+function callNewUser(userId, stream) {
     let call = peer.call(userId, stream);
     let video = document.createElement('video')
+    // vo call answer karega apni video stream ke saath
     call.on('stream', (userVideoStream) => {
       addVideoStream(video, userVideoStream);
     })
@@ -74,17 +77,14 @@ peer.on('open', (id) => {
     username = $("#username").val() || "A User";
     
     videosGrid.append($("#my-video > video"));
-  
     $(".hide-later").hide();
     // $("nav").hide();
-
-    // $("body").css("background-color", "rgb(165, 218, 248)");
     $("body").css("background-color", "rgba(72, 216, 221, 0.801)");
-    
     $(".show-later").show();
+    $(".leave").show();
   
     socket.emit('join-room', room_id, id, username);
-    
+    // room id upar ki script me obtain kar li thi
   })
 })
 
@@ -97,8 +97,10 @@ peer.on('open', (id) => {
 //   $(".show-later").show();
 // })
 
-const muteUnmute = () => {
-  const enabled = myVideoStream.getAudioTracks()[0].enabled;
+
+// Control Bar Functions
+function mute_Unmute_my_Mic () {
+  let enabled = myVideoStream.getAudioTracks()[0].enabled;
   if (enabled) {
     myVideoStream.getAudioTracks()[0].enabled = false;
     setUnmuteButton();
@@ -108,50 +110,49 @@ const muteUnmute = () => {
   }
 }
 
-const playStop = () => {
-  console.log('object')
+function play_Stop_my_Video () {
+  console.log(myVideoStream.getVideoTracks());
   let enabled = myVideoStream.getVideoTracks()[0].enabled;
   if (enabled) {
     myVideoStream.getVideoTracks()[0].enabled = false;
-    setPlayVideo()
+    // myVideoStream.getVideoTracks()[0].stop();
+    setPlayVideo();
   } else {
-    setStopVideo()
+    setStopVideo();
     myVideoStream.getVideoTracks()[0].enabled = true;
   }
 }
 
 const setMuteButton = () => {
-  const html = `
+  let html = `
     <i class="fas fa-microphone"></i>
     <span>Mute</span>
   `
-  document.querySelector('.main__mute_button').innerHTML = html;
+  document.querySelector('.mute_button').innerHTML = html;
 }
-
 const setUnmuteButton = () => {
   const html = `
     <i class="unmute fas fa-microphone-slash"></i>
     <span>Unmute</span>
   `
-  document.querySelector('.main__mute_button').innerHTML = html;
+  document.querySelector('.mute_button').innerHTML = html;
 }
 
 const setStopVideo = () => {
   const html = `
     <i class="fas fa-video"></i>
-    <span>Stop Video</span>
+    <span>Turn Off Video</span>
   `
-  document.querySelector('.main__video_button').innerHTML = html;
+  document.querySelector('.video_button').innerHTML = html;
 }
-
 const setPlayVideo = () => {
   const html = `
   <i class="stop fas fa-video-slash"></i>
     <span>Play Video</span>
   `
-  document.querySelector('.main__video_button').innerHTML = html;
+  document.querySelector('.video_button').innerHTML = html;
 }
 
-// $(".main__controls__button").click((e)=>{
-//   location.reload();
-// })
+$(".leave").click((e)=>{
+  location.reload();
+})

@@ -1,6 +1,5 @@
 
 /* Home Page CSS  */
-
 .custom-btn{
     margin: 2%;
     background-color: rgb(33, 118, 214);
@@ -17,9 +16,9 @@
 video {
     width: 45%;
     /* height: 200px; */
+    /* to invert video stream along vertical axis  */
     -webkit-transform: scaleX(-1);
     transform: scaleX(-1);
-    
 }
 
 #my-video {
@@ -36,6 +35,7 @@ video {
     justify-content: space-evenly;
 }
 
+/* everything is by design  */
 .video-div {
     background-color: rgba(0, 0, 0, 0.705);
     padding: 1%;
@@ -49,54 +49,51 @@ video {
     padding: 1%;
 }
 
+/* Whiteboard Styling  */
 .whiteboard {
-    height: 80vh;
-    width: 100%;
-    position: absolute;
+    /* height: 80vh;
+    width: 100%; */
+    position: fixed;
     left: 0;
     right: 0;
     bottom: 0;
     top: 0;
-  }
+}
   
-  .colors {
-    position: fixed;
-  }
-  
-  .color {
-    display: inline-block;
-    height: 48px;
-    width: 48px;
-  }
-  
-  .color.black { background-color: black; }
-  .color.red { background-color: red; }
-  .color.green { background-color: green; }
-  .color.blue { background-color: blue; }
-  .color.yellow { background-color: yellow; }
+.colors {
+position: fixed;
+}
+
+.color {
+display: inline-block;
+height: 48px;
+width: 48px;
+}
+
+.color.black { background-color: black; }
+.color.red { background-color: red; }
+.color.green { background-color: green; }
+.color.blue { background-color: blue; }
+.color.yellow { background-color: yellow; }
 
 
-/* Edit CSS  */
-
-.main__controls {
+/* Bottom Controls Bar CSS  */
+.controls_bar {
     width: 100vw;
     position: fixed;
     bottom: 0;
-    background-color: #1C1E20;
-}
-
-.main__controls {
-    color: #D2D2D2;
+    background-color: black;
+    color: white;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     padding: 5px;
 }
 
-.main__controls__block {
+.controls_block {
     display: flex;
 }
 
-.main__controls__button {
+.controls_button {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -105,20 +102,13 @@ video {
     min-width: 80px;
     cursor: pointer;
 }
-
-.main__controls__button:hover {
+.controls_button:hover {
     background-color: #343434;
     border-radius: 5px;
 }
 
-.main__controls__button i {
+.controls_button i {
     font-size: 24px;
-}
-
-.main__header {
-    padding-top: 5px;
-    color: #F5F5F5;
-    text-align: center;
 }
 
 .leave_meeting {

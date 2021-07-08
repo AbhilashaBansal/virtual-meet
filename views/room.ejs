@@ -62,10 +62,10 @@
                 <div class="tools-div" style="color: white;">
                     <h4 style="color: white;">Meeting Tools</h4>
                     <div>Tasks/ Agenda List</div>
-                    <div>Whiteboard</div>
+                    <div id="wb-btn">Whiteboard</div>
                     <div>Notepad</div>
 
-                    <canvas class="whiteboard" style="border: solid 1px black;"></canvas>
+                    <canvas class="whiteboard" width="500px" style="border: solid 2px white;"></canvas>
                     <div class="colors">
                         <div class="color black"></div>
                         <div class="color red"></div>
@@ -94,27 +94,24 @@
         
     </div>
 
-    <div class="main__controls">
-        <div class="main__controls__block">
-           <div onclick="muteUnmute()" class="main__controls__button main__mute_button">
+    <div class="controls_bar">
+        <div class="controls_block">
+           <div onclick="mute_Unmute_my_Mic()" class="controls_button mute_button">
               <i class="fas fa-microphone"></i>
               <span>Mute</span>
            </div>
-           <div onclick="playStop()" class="main__controls__button main__video_button" >
+           <div onclick="play_Stop_my_Video()" class="controls_button video_button" >
               <i class="fas fa-video"></i>
               <span>Turn Off Video</span>
            </div>
 
-           <div class="main__controls__block">
-                <div class="main__controls__button">
+           <div class="controls_block">
+                <div class="controls_button leave">
                 <span class="leave_meeting">Leave Meeting</span>
                 </div>
             </div>
         </div>
-        
-        
-     </div>
-  </div>
+    </div>
 
 </body>
 
@@ -122,16 +119,18 @@
     // jo room.ejs render karte samay bheja tha, retrieving it here 
     const room_id = "<%= roomId %>";
 </script>
+
 <!-- jQuery  -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
 integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-
+<!-- Icons  -->
 <script src="https://kit.fontawesome.com/c939d0e917.js"></script>
 
 <!-- Peer JS  -->
 <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
 <!-- Socket IO  -->
 <script src="/socket.io/socket.io.js"></script>
+
 <script src="./JS/script.js"></script>
 <script src="./JS/whiteboard.js"></script>
 </html>
