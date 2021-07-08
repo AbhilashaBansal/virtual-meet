@@ -44,24 +44,18 @@ video {
     background-color: rgba(0, 0, 0, 0.705);
     padding: 1%;
 }
-.tools-div {
-    background-color: rgba(0, 0, 0, 0.705);
-    padding: 1%;
-}
 
 /* Whiteboard Styling  */
 .whiteboard {
-    /* height: 80vh;
-    width: 100%; */
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    top: 0;
+    border: 2px solid black;
+}
+
+canvas {
+    background-color: white;
 }
   
 .colors {
-position: fixed;
+    position: fixed;
 }
 
 .color {
@@ -91,6 +85,7 @@ width: 48px;
 
 .controls_block {
     display: flex;
+    justify-content: flex-start;
 }
 
 .controls_button {
@@ -115,6 +110,14 @@ width: 48px;
     color: #EB534B;
 }
 
-.unmute, .stop {
+.unmute-btn, .stop-btn {
     color: #CC3B33;
+}
+
+.options {
+    height: auto;
+    width: 20%;
+    position: fixed;
+    left: 1vw;
+    bottom: 10vh;
 }

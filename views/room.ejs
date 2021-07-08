@@ -57,26 +57,8 @@
 
     <div class="container-fluid show-later">
         <div class="row">
-            
-            <div class="col-md-3">
-                <div class="tools-div" style="color: white;">
-                    <h4 style="color: white;">Meeting Tools</h4>
-                    <div>Tasks/ Agenda List</div>
-                    <div id="wb-btn">Whiteboard</div>
-                    <div>Notepad</div>
-
-                    <canvas class="whiteboard" width="500px" style="border: solid 2px white;"></canvas>
-                    <div class="colors">
-                        <div class="color black"></div>
-                        <div class="color red"></div>
-                        <div class="color green"></div>
-                        <div class="color blue"></div>
-                        <div class="color yellow"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6">
+            <!-- Participant Videos ka Div  -->
+            <div class="col-md-9" id="d1-pv">
                 <div class="video-div">
                     <h4 style="color: white;">In Call</h4>
                     <div class="text-center" id="videos-grid">
@@ -84,6 +66,31 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Whiteboard ka Div  -->
+            <div class="col-md-9" id="d2-wb">
+                <!-- <div> -->
+                    <canvas class="whiteboard" id="canvas" width="1000" height="500"></canvas>
+                        <div class="colors-cont">
+                            <div class="blue" onclick="setColor('#3498db')"></div>
+                            <div class="orange" onclick="setColor('#e67e22')"></div>
+                            <div class="purple" onclick="setColor('#9b59b6')"></div>
+                            <div class="pink" onclick="setColor('#fd79a8')"></div>
+                            <div class="brown" onclick="setColor('#834c32')"></div>
+                            <div class="grey" onclick="setColor('gray')"></div>
+                            <div class="eraser" onclick="setEraser()"><i class="fas fa-eraser"></i></div>
+                            <div class="clearboard" onclick="clearBoard()"><i class="fas fa-trash-alt"></i></div>
+                        </div>
+                        <div class="colors">
+                            <div class="color black"></div>
+                            <div class="color red"></div>
+                            <div class="color green"></div>
+                            <div class="color blue"></div>
+                            <div class="color yellow"></div>
+                        </div>
+                <!-- </div> -->
+            </div>
+
 
             <div class="col-md-3">
                 <div class="chat-div">
@@ -94,13 +101,30 @@
         
     </div>
 
+    <div class="options">
+        <ul class="list-group">
+            <li class="list-group-item" id="l1-pv">Participant Videos</li>
+            <li class="list-group-item" id="l2-wb">Whiteboard</li>
+            <li class="list-group-item" id="l3-np">Notepad</li>
+          </ul>
+    </div>
+
+    <!-- Bottom Controls Bar -->
     <div class="controls_bar">
-        <div class="controls_block">
-           <div onclick="mute_Unmute_my_Mic()" class="controls_button mute_button">
+        <div class="controls_block" style="flex-grow: 3.5;">
+            <div class="controls_button options-btn" onclick="show_options();">
+                <i class="fas fa-caret-square-up" style="font-size: 30px;"></i>
+            </div>
+            <div class="controls_button share-code-btn" onclick="">
+                <i class="fas fa-share-alt-square" style="font-size: 30px;"></i>
+            </div>
+        </div>
+        <div class="controls_block" style="flex-grow: 4;">
+           <div onclick="mute_Unmute_my_Mic();" class="controls_button mute-btn">
               <i class="fas fa-microphone"></i>
               <span>Mute</span>
            </div>
-           <div onclick="play_Stop_my_Video()" class="controls_button video_button" >
+           <div onclick="play_Stop_my_Video();" class="controls_button video-btn" >
               <i class="fas fa-video"></i>
               <span>Turn Off Video</span>
            </div>

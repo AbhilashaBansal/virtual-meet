@@ -2,6 +2,16 @@ const socket = io('/');
 
 $(".show-later").hide();
 $(".leave").hide();
+$(".options-btn").hide();
+$(".share-code-btn").hide();
+$(".options").hide();
+
+const d1_pv = $("#d1-pv");
+const d2_wb = $("#d2-wb");
+// const d3_np = $("#d3-np");
+
+d2_wb.hide();
+// d3_np.hide();
 
 // Video Grids
 const preVideo = $("#my-video");
@@ -82,6 +92,8 @@ peer.on('open', (id) => {
     $("body").css("background-color", "rgba(72, 216, 221, 0.801)");
     $(".show-later").show();
     $(".leave").show();
+    $(".options-btn").show();
+    $(".share-code-btn").show();
   
     socket.emit('join-room', room_id, id, username);
     // room id upar ki script me obtain kar li thi
@@ -115,7 +127,7 @@ function play_Stop_my_Video () {
   let enabled = myVideoStream.getVideoTracks()[0].enabled;
   if (enabled) {
     myVideoStream.getVideoTracks()[0].enabled = false;
-    // myVideoStream.getVideoTracks()[0].stop();
+    myVideoStream.getVideoTracks()[0].stop();
     setPlayVideo();
   } else {
     setStopVideo();
@@ -128,14 +140,14 @@ const setMuteButton = () => {
     <i class="fas fa-microphone"></i>
     <span>Mute</span>
   `
-  document.querySelector('.mute_button').innerHTML = html;
+  document.querySelector('.mute-btn').innerHTML = html;
 }
 const setUnmuteButton = () => {
   const html = `
-    <i class="unmute fas fa-microphone-slash"></i>
+    <i class="unmute-btn fas fa-microphone-slash"></i>
     <span>Unmute</span>
   `
-  document.querySelector('.mute_button').innerHTML = html;
+  document.querySelector('.mute-btn').innerHTML = html;
 }
 
 const setStopVideo = () => {
@@ -143,16 +155,30 @@ const setStopVideo = () => {
     <i class="fas fa-video"></i>
     <span>Turn Off Video</span>
   `
-  document.querySelector('.video_button').innerHTML = html;
+  document.querySelector('.video-btn').innerHTML = html;
 }
 const setPlayVideo = () => {
   const html = `
-  <i class="stop fas fa-video-slash"></i>
+  <i class="stop-btn fas fa-video-slash"></i>
     <span>Play Video</span>
   `
-  document.querySelector('.video_button').innerHTML = html;
+  document.querySelector('.video-btn').innerHTML = html;
 }
 
 $(".leave").click((e)=>{
   location.reload();
+})
+
+function show_options () {
+  $(".options").toggle();
+}
+
+$("#l1-pv").click(()=>{
+  d2_wb.hide();
+  d1_pv.show();
+})
+
+$("#l2-wb").click(()=>{
+  d1_pv.hide();
+  d2_wb.show();
 })
