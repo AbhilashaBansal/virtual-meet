@@ -21,6 +21,7 @@ video {
     /* to invert video stream along vertical axis  */
     -webkit-transform: scaleX(-1);
     transform: scaleX(-1);
+    margin-bottom: 3%;
 }
 
 #my-video {
@@ -35,6 +36,11 @@ video {
 #videos-grid {
     display: flex;
     justify-content: space-evenly;
+    flex-wrap: wrap;
+    /* flex-direction: column; */
+}
+#videos-grid > video {
+    width: 30%;
 }
 
 .show-later{
@@ -60,6 +66,7 @@ video {
 .chat-div {
     background-color: rgba(0, 0, 0, 0.705);
     padding: 1%;
+    min-height: 75vh;
 }
 
 
@@ -137,7 +144,7 @@ video {
     margin: 2px;
     color: black;
     background-color: white;
-    border-radius: 10%;
+    /* border-radius: 10%; */
 }
 
 .main_message_container {
