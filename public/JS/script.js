@@ -1,16 +1,16 @@
 const socket = io('/');
 
-$(".show-later").hide();
+// $(".show-later").hide();
+// $(".options").hide();
 $(".leave").hide();
 $(".options-btn").hide();
 $(".share-code-btn").hide();
-$(".options").hide();
 
 const d1_pv = $("#d1-pv");
 const d2_wb = $("#d2-wb");
-// const d3_np = $("#d3-np");
+const d3_np = $("#d3-np");
 
-d2_wb.hide();
+// d2_wb.hide();
 // d3_np.hide();
 
 // Video Grids
@@ -165,6 +165,8 @@ const setPlayVideo = () => {
   document.querySelector('.video-btn').innerHTML = html;
 }
 
+
+// Control Bar Event Listeners 
 $(".leave").click((e)=>{
   location.reload();
 })
@@ -174,11 +176,22 @@ function show_options () {
 }
 
 $("#l1-pv").click(()=>{
+  d3_np.hide();
   d2_wb.hide();
   d1_pv.show();
+  $(".options").hide();
 })
 
 $("#l2-wb").click(()=>{
+  d3_np.hide();
   d1_pv.hide();
   d2_wb.show();
+  $(".options").hide();
+})
+
+$("#l3-np").click(()=>{
+  d2_wb.hide();
+  d1_pv.hide();
+  d3_np.show();
+  $(".options").hide();
 })

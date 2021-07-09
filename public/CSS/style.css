@@ -13,6 +13,8 @@
 }
 
 /* Room Page CSS  */
+
+/* Participant Videos Div CSS */
 video {
     width: 45%;
     /* height: 200px; */
@@ -35,41 +37,74 @@ video {
     justify-content: space-evenly;
 }
 
+.show-later{
+    display: none;
+}
+
 /* everything is by design  */
 .video-div {
     background-color: rgba(0, 0, 0, 0.705);
     padding: 1%;
+}
+.wb-div {
+    background-color: rgba(0, 0, 0, 0.705);
+    padding: 1%;
+}
+#d2-wb {
+    display: none;
+}
+#d3-np {
+    background-color: rgba(0, 0, 0, 0.705);
+    display: none;
 }
 .chat-div {
     background-color: rgba(0, 0, 0, 0.705);
     padding: 1%;
 }
 
-/* Whiteboard Styling  */
+/* Whiteboard Div CSS  */
 .whiteboard {
     border: 2px solid black;
+    width: 100%;
 }
 
-canvas {
+/* canvas {
     background-color: white;
-}
-  
-.colors {
-    position: fixed;
-}
+    width: 100%;
+    height: 75vh;
+} */
 
 .color {
-display: inline-block;
-height: 48px;
-width: 48px;
+    display: inline-block;
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
 }
 
 .color.black { background-color: black; }
 .color.red { background-color: red; }
 .color.green { background-color: green; }
-.color.blue { background-color: blue; }
+.color.blue { background-color: #3498db; }
 .color.yellow { background-color: yellow; }
+.color.orange { background-color: #e67e22; }
+.color.purple { background-color: #9b59b6; }
+.color.pink { background-color: #fd79a8; }
+.color.brown { background-color: #834c32; }
+.color.grey { background-color: gray; }
 
+.eraser i, .clearboard i, .save-wb i{
+    font-size: 2em;
+}
+.eraser, .clearboard, .save-wb{
+    display: inline-block;
+    background-color: white;
+    border-radius: 50%;
+    height: 45px;
+    width: 45px;
+    justify-content: center;
+}
+
+/* Notepad Div CSS  */
 
 /* Bottom Controls Bar CSS  */
 .controls_bar {
@@ -120,4 +155,9 @@ width: 48px;
     position: fixed;
     left: 1vw;
     bottom: 10vh;
+    display: none;
+}
+
+.options ul li:hover {
+    background-color: #c2bdbd;
 }

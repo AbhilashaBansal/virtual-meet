@@ -1,10 +1,15 @@
-    // let socket = io();
+// let socket = io();
 
 let canvas = $("canvas")[0];
-let colors = document.getElementsByClassName('color');
+let colors = $(".color");
+let clearb = $("#clear");
+let eraser = $("#eraser");
+
 let context = canvas.getContext('2d');
 
-// canvas.attr("width", canvas.parent().width());
+context.fillStyle = "white";
+context.fillRect(0, 0, canvas.width, canvas.height);
+
 
 let current = {
   color: 'black'
@@ -28,8 +33,8 @@ for (let i = 0; i < colors.length; i++){
 
 socket.on('drawing', onDrawingEvent);
 
-window.addEventListener('resize', onResize, false);
-onResize();
+// window.addEventListener('resize', onResize, false);
+// onResize();
 
 
 function drawLine(x0, y0, x1, y1, color, emit){
@@ -55,20 +60,6 @@ function drawLine(x0, y0, x1, y1, color, emit){
   });
 }
 
-// function getMousePos(canvas, evt) {
-//   var rect = canvas.getBoundingClientRect();
-//   return {
-//     x: evt.clientX - rect.left,
-//     y: evt.clientY - rect.top
-//   };
-// }
-// function getMousePos(canvas, evt) {
-//   var rect = canvas.getBoundingClientRect();
-//   return {
-//       x: (evt.clientX - rect.left) / (rect.right - rect.left) * canvas.width,
-//       y: (evt.clientY - rect.top) / (rect.bottom - rect.top) * canvas.height
-//   };
-// }
 
 function onMouseDown(e){
   let canvasOffset=$("#canvas").position();
@@ -135,9 +126,20 @@ function onDrawingEvent(data){
 
 // make the canvas fill its parent
 function onResize() {
-  let ww = canvas.parent().width();
-  let hh = canvas.parent().height();
+  let ww = $("#canvas").parent().width();
+  let hh = $("#canvas").parent().height();
 
   canvas.width = ww;
   canvas.height = hh;
+}
+
+
+function download_wb(){
+  let image = canvas.toDataURL("image/jpg");
+  let file = document.createElement('a');
+  // let name = "meeting_whiteboard"; 
+
+  file.download = "meeting_whiteboard.jpeg";
+  file.href = image;
+  file.click();
 }
