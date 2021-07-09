@@ -62,6 +62,7 @@ video {
     padding: 1%;
 }
 
+
 /* Whiteboard Div CSS  */
 .whiteboard {
     border: 2px solid black;
@@ -73,6 +74,14 @@ video {
     width: 100%;
     height: 75vh;
 } */
+
+.colors {
+    display: inline-flex;
+}
+.tools {
+    display: inline-flex;
+    float: right;
+}
 
 .color {
     display: inline-block;
@@ -92,10 +101,10 @@ video {
 .color.brown { background-color: #834c32; }
 .color.grey { background-color: gray; }
 
-.eraser i, .clearboard i, .save-wb i{
+.eraser i, .clearb i, .save-wb i{
     font-size: 2em;
 }
-.eraser, .clearboard, .save-wb{
+.eraser, .clearb, .save-wb{
     display: inline-block;
     background-color: white;
     border-radius: 50%;
@@ -104,7 +113,44 @@ video {
     justify-content: center;
 }
 
+
 /* Notepad Div CSS  */
+
+
+/* Chat Box CSS */
+.chat-div {
+    display: flex;
+    flex-direction: column;
+}
+
+.main_chat_window {
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+.messages{
+    padding-left: 0;
+    list-style: none;
+}
+
+.messages li {
+    margin: 2px;
+    color: black;
+    background-color: white;
+    border-radius: 10%;
+}
+
+.main_message_container {
+    padding: 22px 12px;
+    display: flex;
+}
+
+.main_message_container input {
+    flex-grow: 1;
+    background-color: skyblue;
+    border: none;
+    color: #F5F5F5;
+}
 
 /* Bottom Controls Bar CSS  */
 .controls_bar {

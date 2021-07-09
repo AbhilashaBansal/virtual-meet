@@ -40,6 +40,14 @@ io.on('connection', (socket) => {
         // add messages functionality
 
         // add disconnect fnlity
+        socket.on('message', (message, username) => {
+            //send message to the same room
+            io.to(roomId).emit('createMessage', message, username);
+        }); 
+      
+        socket.on('disconnect', () => {
+            socket.broadcast.emit('user-disconnected', userId);
+        })
     })
 })
 

@@ -82,8 +82,10 @@
                         <div class="color pink"></div>
                         <div class="color brown"></div>
                         <div class="color grey"></div>
+                    </div>
+                    <div class="tools">
                         <div class="eraser" id="eraser" onclick="setEraser()"><i class="fas fa-eraser"></i></div>
-                        <div class="clearboard" id="clearb" onclick="clearBoard()"><i class="fas fa-trash-alt"></i></div>
+                        <div class="clearb" id="clearb" onclick="clearBoard()"><i class="fas fa-trash-alt"></i></div>
                         <div class="save-wb"><i class="fas fa-file-download" onclick="download_wb();"></i></div>
                     </div>
                 </div>
@@ -93,10 +95,21 @@
             <div class="col-md-9" id="d3-np">
                 <textarea name="notes" id="notepad"></textarea>
             </div>
-
+            
+            <!-- Chatbox ka Div  -->
             <div class="col-md-3">
                 <div class="chat-div">
                     <h4 style="color: white;">Chat</h4>
+                    
+                    <div class="main_chat_window">
+                        <ul class="messages">
+                           
+                        </ul>
+                    </div>
+
+                    <div class="main_message_container">
+                        <input id="apna_msg" type="text" placeholder="Type message here...">
+                    </div>
                 </div>
             </div>
         </div>

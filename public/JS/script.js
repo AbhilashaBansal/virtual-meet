@@ -29,7 +29,7 @@ let peer = new Peer (undefined, {
   host: '/',
   port: '3000'
 });
-
+let peers = {};
 
 // Appending User Videos
 function addVideoStream(video, stream, element) {
@@ -63,6 +63,25 @@ navigator.mediaDevices.getUserMedia({
         addVideoStream(video, userVideoStream);
     })
   })
+
+  // chat messages vaaste functionlity
+  let msg_text = $("#apna_msg");
+  // when press enter send message
+  $('html').keydown(function (e) {
+    if (e.which == 13 && msg_text.val().length !== 0) {
+      socket.emit('message', msg_text.val(), username);
+      msg_text.val('');
+    }
+  });
+
+  socket.on("createMessage", (message, un) => {
+    if(un==username && username!="A User"){
+      un = "You";
+    }
+    $(".messages").append(`<li class="message"><b>${un}</b><br/>${message}</li>`);
+    scrollToBottom();
+  })
+    
 }).catch((er)=>{
   // check later
   window.console.log("here");
@@ -78,7 +97,18 @@ function callNewUser(userId, stream) {
     call.on('stream', (userVideoStream) => {
       addVideoStream(video, userVideoStream);
     })
+    call.on('close', () => {
+      video.remove();
+    })
+  
+    peers[userId] = call;
 }
+
+
+// disconnect/ meeting left
+socket.on('user-disconnected', (userId) => {
+  if (peers[userId]) peers[userId].close();
+})
 
 
 // after the pre-call area
@@ -100,14 +130,11 @@ peer.on('open', (id) => {
   })
 })
 
-// $("#enter-btn").click((e)=>{
-//   username = $("#username").val() || "A User";
-  
-//   videosGrid.append($("#my-video > video"));
 
-//   $(".hide-later").hide();
-//   $(".show-later").show();
-// })
+function scrollToBottom () {
+  let d = $('.main_chat_window');
+  d.scrollTop(d.prop("scrollHeight"));
+}
 
 
 // Control Bar Functions
