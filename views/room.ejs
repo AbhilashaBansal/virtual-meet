@@ -159,19 +159,23 @@
 
 </body>
 
-<script>
-    // jo room.ejs render karte samay bheja tha, retrieving it here 
-    const room_id = "<%= roomId %>";
-    CKEDITOR.replace("editor1");
-    function printHere(e){
-        document.getElementsByTagName("iframe")[0].contentWindow.print();
-        console.log(document.getElementById("notepad").value);
-    }
-</script>
-
 <!-- jQuery  -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
 integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+<script>
+    // jo room.ejs render karte samay bheja tha, retrieving it here 
+    const room_id = "<%= roomId %>";
+
+    CKEDITOR.replace("editor1");
+    function printHere(e){
+        let ifr = document.getElementsByTagName("iframe")[0];
+        ifr.contentDocument.title = "Meeting Notes";
+        ifr.contentWindow.print();
+        // console.log(document.getElementById("notepad").value);
+    }
+</script>
+
 <!-- Icons  -->
 <script src="https://kit.fontawesome.com/c939d0e917.js"></script>
 

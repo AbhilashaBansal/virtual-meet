@@ -122,7 +122,9 @@ video {
 
 
 /* Notepad Div CSS  */
-
+/* #cke_notepad {
+    height: 100;
+} */
 
 /* Chat Box CSS */
 .chat-div {
@@ -150,13 +152,14 @@ video {
 .main_message_container {
     padding: 22px 12px;
     display: flex;
+    background-color: beige;
 }
 
 .main_message_container input {
     flex-grow: 1;
     background-color: skyblue;
     border: none;
-    color: #F5F5F5;
+    color: black;
 }
 
 /* Bottom Controls Bar CSS  */
