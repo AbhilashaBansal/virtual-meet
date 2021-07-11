@@ -55,6 +55,11 @@ video {
 .wb-div {
     background-color: rgba(0, 0, 0, 0.705);
     padding: 1%;
+    overflow: scroll;
+    /* display: flex;
+    flex-grow: 10; */
+    /* check karna hai yar */
+    justify-content: center;
 }
 #d2-wb {
     display: none;
@@ -73,7 +78,7 @@ video {
 /* Whiteboard Div CSS  */
 .whiteboard {
     border: 2px solid black;
-    width: 100%;
+    display: block;
 }
 
 /* canvas {
