@@ -1,5 +1,6 @@
 // let socket = io();
 
+// canvas element
 let canvas = $("canvas")[0];
 let colors = $(".color");
 let clearb = $("#clear");
@@ -7,14 +8,17 @@ let eraser = $("#eraser");
 
 let context = canvas.getContext('2d');
 
+// background color
 context.fillStyle = "white";
 context.fillRect(0, 0, canvas.width, canvas.height);
 
 
 let current = {
-  color: 'black'
+  color: 'black',
+  lineWidth: 2
 };
 let drawing = false;
+let erasing = false;
 
 canvas.addEventListener('mousedown', onMouseDown, false);
 canvas.addEventListener('mouseup', onMouseUp, false);
@@ -35,10 +39,10 @@ socket.on('drawing', onDrawingEvent);
 
 // window.addEventListener('resize', onResize, false);
 // onResize();
-
+// $("canvas").attr("width", $("#wb").width());
 
 function drawLine(x0, y0, x1, y1, color, emit){
-  console.log(x0, y0, x1, y1);
+  // console.log(x0, y0, x1, y1);
   context.beginPath();
   context.moveTo(x0, y0);
   context.lineTo(x1, y1);
@@ -56,29 +60,32 @@ function drawLine(x0, y0, x1, y1, color, emit){
     y0: y0 / h,
     x1: x1 / w,
     y1: y1 / h,
-    color: color
+    color: color,
+    lineWidth: current.lineWidth
   });
 }
 
 
+// Event Listeners for Drawing
 function onMouseDown(e){
-  let canvasOffset=$("#canvas").position();
-  let offsetX=canvasOffset.left;
-  let offsetY=canvasOffset.top;
+  // let canvasOffset = $("#canvas").offset();
+  let canvasOffset = $(".whiteboard").offset();
+  let offsetX = canvasOffset.left;
+  let offsetY = canvasOffset.top;
   console.log(offsetX, offsetY);
 
   drawing = true;
-  // let pos = getMousePos(canvas, e);
   current.x = parseInt(e.clientX-offsetX);
-  // current.x = e.clientX||e.touches[0].clientX;
   current.y = parseInt(e.clientY-offsetY);
+  // current.x = e.clientX||e.touches[0].clientX;
+  
   console.log(current);
 }
 
 function onMouseUp(e){
-  let canvasOffset=$("#canvas").position();
-  let offsetX=canvasOffset.left;
-  let offsetY=canvasOffset.top;
+  let canvasOffset = $(".whiteboard").offset();
+  let offsetX = canvasOffset.left;
+  let offsetY = canvasOffset.top;
   console.log(offsetX, offsetY);
 
   if (!drawing) {return;}
@@ -90,9 +97,11 @@ function onMouseUp(e){
 
 function onMouseMove(e){
   if (!drawing) { return; }
-  let canvasOffset=$("#canvas").position();
-  let offsetX=canvasOffset.left;
-  let offsetY=canvasOffset.top;
+
+  // let canvasOffset = $("#canvas").offset();
+  let canvasOffset = $(".whiteboard").offset();
+  let offsetX = canvasOffset.left;
+  let offsetY = canvasOffset.top;
   let x = parseInt(e.clientX-offsetX);
   let y = parseInt(e.clientY-offsetY);
   
@@ -101,11 +110,30 @@ function onMouseMove(e){
   current.y = y;
 }
 
+
+let color_map = {
+  "black": "black",
+  "red": "red",
+  "blue": "#3498db",
+  "green": "green",
+  "yellow": "rgb(253, 236, 0)",
+  "orange": "#e67e22",
+  "purple": "#9b59b6",
+  "pink": "#fd79a8",
+  "brown": "#834c32",
+  "grey": "rgb(194, 194, 194)"
+};
+
 function onColorUpdate(e){
-  current.color = e.target.className.split(' ')[1];
+  current.color = color_map[e.target.className.split(' ')[1]];
+  document.querySelector(
+    ".whiteboard"
+  ).style = `cursor: unset;`;
+  current.lineWidth = 2;
 }
 
-// limit the number of events per second
+
+//to limit the number of events per second
 function throttle(callback, delay) {
   let previousCall = new Date().getTime();
   return function() {
@@ -118,20 +146,47 @@ function throttle(callback, delay) {
   };
 }
 
+// socket event, collaborative whiteboard isi se banta hai
 function onDrawingEvent(data){
   let w = canvas.width;
   let h = canvas.height;
   drawLine(data.x0 * w, data.y0 * h, data.x1 * w, data.y1 * h, data.color);
 }
 
+
+// review later
 // make the canvas fill its parent
 function onResize() {
-  let ww = $("#canvas").parent().width();
-  let hh = $("#canvas").parent().height();
-
-  canvas.width = ww;
-  canvas.height = hh;
+  // let ww = $("#canvas").parent().width();
+  // let hh = $("#canvas").parent().height();
+  canvas.width = window.innerWidth;
+	canvas.height = window.innerHeight;
 }
+
+
+// eraser functionality
+// improve in terms of pen width
+function setEraser() {
+  current.color = "white";
+  document.querySelector(
+    ".whiteboard"
+  ).style = `cursor:url('../Images/erase.png'),auto;`;
+  current.lineWidth = 10;
+}
+
+//clear board
+function clearBoard() {
+  context.clearRect(0, 0, canvas.width, canvas.height);
+  context.fillStyle = "white";
+  context.fillRect(0, 0, canvas.width, canvas.height);
+  socket.emit('clearBoard');
+}
+
+socket.on('clearBoard', () => {
+  context.clearRect(0, 0, canvas.width, canvas.height);
+  context.fillStyle = "white";
+  context.fillRect(0, 0, canvas.width, canvas.height);
+})
 
 
 function download_wb(){

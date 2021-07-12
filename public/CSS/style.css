@@ -55,6 +55,13 @@ video {
 .wb-div {
     background-color: rgba(0, 0, 0, 0.705);
     padding: 1%;
+    overflow: scroll;
+}
+#wb-int-ali{
+    /* display: flex;
+    justify-content: center;
+    align-content: center; */
+    text-align: center;
 }
 #d2-wb {
     display: none;
@@ -73,7 +80,9 @@ video {
 /* Whiteboard Div CSS  */
 .whiteboard {
     border: 2px solid black;
-    width: 100%;
+    display: block;
+    margin: auto;
+    /* width: 100%; */
 }
 
 /* canvas {
@@ -101,12 +110,12 @@ video {
 .color.red { background-color: red; }
 .color.green { background-color: green; }
 .color.blue { background-color: #3498db; }
-.color.yellow { background-color: yellow; }
+.color.yellow { background-color: rgb(253, 236, 0); }
 .color.orange { background-color: #e67e22; }
 .color.purple { background-color: #9b59b6; }
 .color.pink { background-color: #fd79a8; }
 .color.brown { background-color: #834c32; }
-.color.grey { background-color: gray; }
+.color.grey { background-color: rgb(194, 194, 194); }
 
 .eraser i, .clearb i, .save-wb i{
     font-size: 2em;
