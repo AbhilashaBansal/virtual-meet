@@ -27,7 +27,7 @@ myVideo.muted = true;
 let peer = new Peer (undefined, {
   path: '/peerjs',
   host: '/',
-  port: '3000'
+  port: '443'
 });
 let peers = {};
 
@@ -154,7 +154,7 @@ function play_Stop_my_Video () {
   let enabled = myVideoStream.getVideoTracks()[0].enabled;
   if (enabled) {
     myVideoStream.getVideoTracks()[0].enabled = false;
-    myVideoStream.getVideoTracks()[0].stop();
+    // myVideoStream.getVideoTracks()[0].stop();
     setPlayVideo();
   } else {
     setStopVideo();
