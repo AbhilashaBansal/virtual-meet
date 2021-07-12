@@ -1,18 +1,22 @@
 let users = [];
+let rooms = [];
 
 function enterUser(userID, username, roomID, socketID) {
 	let user = { userID, username, roomID, socketID };
 	users.push(user);
+	if(getAllRoomUsers(roomID).length==1){
+		rooms.push(roomID);
+	}
 	return user;
 }
 
 
-// function userLeave(id) {
-// 	const index = users.find((user) => user.socketId === id);
-// 	if (index !== -1) {
-// 		return users.splice(index, 1)[0];
-// 	}
-// }
+function userLeave(id) {
+	let index = users.find((user) => user.socketId === id);
+	if (index !== -1) {
+		return users.splice(index, 1)[0];
+	}
+}
 
 
 function getAllRoomUsers(roomID) {
@@ -28,5 +32,6 @@ function getCurrentUser(socketID) {
 module.exports = {
     enterUser,
     getAllRoomUsers,
-	getCurrentUser
+	getCurrentUser,
+	userLeave
 };

@@ -12,6 +12,15 @@ const peerServer = ExpressPeerServer(server, {
 app.use('/peerjs', peerServer);
 const { v4: uuidV4 } = require('uuid')
 
+
+const {
+    enterUser,
+    getAllRoomUsers,
+	getCurrentUser,
+    userLeave
+  } = require("./routes/users");
+
+
 // middlewares
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
@@ -32,8 +41,22 @@ app.get('/:room', (req, res) => {
 io.on('connection', (socket) => {
     socket.on('join-room', (roomId, userId, userName) => {
         socket.join(roomId);
+        let user = enterUser(userId, userName, roomId, socket.id);
+        console.log(user);
+        // let roomUsers = getAllRoomUsers(roomId);
+        // if (roomUsers.length>1) {
+        //     socket.to(roomUsers[0].socketId).emit("data_dijiye", socket.id);
+        //     console.log("apna time");
+        // }
+
         socket.to(roomId).emit('user-connected', userId);
         console.log("A user is connected:", userName, "User ID:", userId, "Room ID:", roomId);
+
+        // socket.on("data_lijiye", (data, socketId) => {
+        //     console.log("hum hain yaha");
+        //     socket.to(socketId).emit("init", data);
+        // });
+        
         
         socket.on('drawing', (data) => socket.broadcast.emit('drawing', data));
         socket.on('clearBoard', () => {
@@ -51,7 +74,9 @@ io.on('connection', (socket) => {
         }); 
       
         socket.on('disconnect', () => {
+            let user = userLeave(socket.id);
             socket.broadcast.emit('user-disconnected', userId);
+            console.log("Nikal gaya");
         })
     })
 })

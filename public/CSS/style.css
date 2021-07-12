@@ -221,6 +221,26 @@ video {
     left: 1vw;
     bottom: 10vh;
     display: none;
+    border: 2px solid black;
+}
+.meet-code-div {
+    height: auto;
+    width: 20%;
+    position: fixed;
+    left: 5vw;
+    bottom: 10vh;
+    display: none;
+    background-color: white;
+    text-align: center;
+    border: 2px solid black;
+}
+#copy-code-btn{
+    background-color: rgb(0, 132, 255);
+    color: white;
+}
+#copy-code-btn:hover{
+    background-color: rgb(0, 255, 191);
+    /* background-color: rgb(85, 166, 241); */
 }
 
 .options ul li:hover {

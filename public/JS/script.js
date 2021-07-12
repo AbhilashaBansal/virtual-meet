@@ -13,6 +13,9 @@ const d3_np = $("#d3-np");
 // d2_wb.hide();
 // d3_np.hide();
 
+let init_canvas_state;
+let init_editor_state;
+
 // Video Grids
 const preVideo = $("#my-video");
 const videosGrid = $("#videos-grid");
@@ -81,6 +84,26 @@ navigator.mediaDevices.getUserMedia({
     $(".messages").append(`<li class="message"><b>${un}</b><br/>${message}</li>`);
     scrollToBottom();
   })
+
+  // socket.on("data_dijiye", (socketId) => {
+  //   let canvas = $(".whiteBoard");
+  //   let canvasContents = canvas.toDataURL();
+  //   let ifr = document.getElementsByTagName("iframe")[0];
+  //   let saamaan = ifr.contentDocument.body.innerHTML;
+    
+  //   let data = { image: canvasContents, text:saamaan, date: Date.now() };
+  //   let str = JSON.stringify(data);
+  //   socket.emit("data_lijiye", str, socketId);
+  //   console.log("hum hain yaha");
+  // });
+
+  // socket.on("init", (data) => {
+  //   let data2 = JSON.parse(data);
+  //   init_canvas_state = data2.image;
+  //   init_editor_state = data2.text;
+
+  //   console.log("Welcome");
+  // });
 
 }).catch((er)=>{
   // check later
@@ -201,6 +224,29 @@ $(".leave").click((e)=>{
 function show_options () {
   $(".options").toggle();
 }
+function show_code () {
+  $(".meet-code-div").toggle();
+  if($(".meet-code-div").is(":hidden")){
+    $("#copy-code-btn").prop("background-color", "rgb(0, 132, 255)");
+    $("#copy-code-btn").text("Copy");
+  }
+}
+
+$("#copy-code-btn").click(function(e){
+  let copyTextarea = document.getElementById("code");
+  // copyTextarea.focus();
+  // copyTextarea.select();
+  console.log(copyTextarea);
+  let text = copyTextarea.innerText;
+  navigator.clipboard.writeText(text).then(function() {
+    console.log('Async: Copying to clipboard was successful!');
+    $("#copy-code-btn").text("Copied!");
+  }, function(err) {
+    console.error('Async: Could not copy text: ', err);
+  });
+
+
+})
 
 $("#l1-pv").click(()=>{
   d3_np.hide();
@@ -214,6 +260,17 @@ $("#l2-wb").click(()=>{
   d1_pv.hide();
   d2_wb.show();
   $(".options").hide();
+  // may need to review
+  // if(init_canvas_state){
+  //   let canvas = $("canvas")[0];
+  //   let context = canvas.getContext('2d');
+  //   let image = new Image();
+  //   image.onload = function (){
+  //     context.drawImage(image, 0, 0); // draw the new image to the screen
+  //   };
+  //   image.src = init_canvas_state;
+  //   init_canvas_state = null;
+  // }
 })
 
 $("#l3-np").click(()=>{
@@ -224,6 +281,11 @@ $("#l3-np").click(()=>{
 
   let ifr = document.getElementsByTagName("iframe")[0];
   let toolbar = document.getElementById("cke_1_top");
+  // if(init_editor_state){
+  //   ifr.contentDocument.body.innerHTML = init_editor_state;
+  //   init_editor_state = null;
+  // }
+
   console.log(ifr);
   ifr.contentDocument.body.onkeydown = function(){
     // alert("Change aayo hai!");
