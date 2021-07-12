@@ -40,6 +40,10 @@ io.on('connection', (socket) => {
             socket.to(roomId).emit('clearBoard');
         });
 
+        socket.on('editor-change', (saamaan)=>{
+            socket.to(roomId).emit('editor-update-kar-rey', saamaan);
+        })
+
         // messages functionality
         socket.on('message', (message, username) => {
             //send message to the same room
