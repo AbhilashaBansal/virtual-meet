@@ -81,7 +81,7 @@ navigator.mediaDevices.getUserMedia({
     $(".messages").append(`<li class="message"><b>${un}</b><br/>${message}</li>`);
     scrollToBottom();
   })
-    
+
 }).catch((er)=>{
   // check later
   window.console.log("here");
@@ -221,4 +221,26 @@ $("#l3-np").click(()=>{
   d1_pv.hide();
   d3_np.show();
   $(".options").hide();
+
+  let ifr = document.getElementsByTagName("iframe")[0];
+  let toolbar = document.getElementById("cke_1_top");
+  console.log(ifr);
+  ifr.contentDocument.body.onkeydown = function(){
+    // alert("Change aayo hai!");
+    let saamaan = ifr.contentDocument.body.innerHTML;
+    console.log(saamaan);
+    socket.emit('editor-change', saamaan);
+  }
+  
+  toolbar.onclick = function(){
+    // alert("Change aayo hai!");
+    let saamaan = ifr.contentDocument.body.innerHTML;
+    console.log(saamaan);
+    socket.emit('editor-change', saamaan);
+  }
+})
+
+socket.on('editor-update-kar-rey', (saamaan)=>{
+  let ifr = document.getElementsByTagName("iframe")[0];
+  ifr.contentDocument.body.innerHTML = saamaan;
 })
