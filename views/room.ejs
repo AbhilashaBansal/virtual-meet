@@ -24,7 +24,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-          <a class="navbar-brand" href="">Teams Clone</a>
+          <a class="navbar-brand" href="./index.html">Teams Clone</a>
           <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -98,8 +98,8 @@
 
             <!-- Notepad ka Div -->
             <div class="col-md-9" id="d3-np">
-                <button id="b1" onclick="printHere();">Dowload</button>
                 <textarea id="notepad" name="editor1"></textarea>
+                <button id="b1" onclick="printHere();">Download as PDF</button>
             </div>
             
             <!-- Chatbox ka Div  -->
@@ -130,6 +130,11 @@
             <li class="list-group-item" id="l3-np">Notepad</li>
           </ul>
     </div>
+    <!-- Meeting Code Div -->
+    <div class="meet-code-div">
+        <p id="code"></p>
+        <button id="copy-code-btn">Copy</button>
+    </div>
 
     <!-- Bottom Controls Bar -->
     <div class="controls_bar">
@@ -137,7 +142,7 @@
             <div class="controls_button options-btn" onclick="show_options();">
                 <i class="fas fa-caret-square-up" style="font-size: 30px;"></i>
             </div>
-            <div class="controls_button share-code-btn" onclick="">
+            <div class="controls_button share-code-btn" onclick="show_code();">
                 <i class="fas fa-share-alt-square" style="font-size: 30px;"></i>
             </div>
         </div>
@@ -168,6 +173,7 @@ integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="ano
 <script>
     // jo room.ejs render karte samay bheja tha, retrieving it here 
     const room_id = "<%= roomId %>";
+    document.getElementById("code").innerText = room_id;
 
     CKEDITOR.replace("editor1");
     function printHere(e){

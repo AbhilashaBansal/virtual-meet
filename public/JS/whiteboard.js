@@ -12,7 +12,6 @@ let context = canvas.getContext('2d');
 context.fillStyle = "white";
 context.fillRect(0, 0, canvas.width, canvas.height);
 
-
 let current = {
   color: 'black',
   lineWidth: 2
