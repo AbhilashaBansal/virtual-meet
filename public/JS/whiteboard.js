@@ -14,9 +14,11 @@ context.fillRect(0, 0, canvas.width, canvas.height);
 
 
 let current = {
-  color: 'black'
+  color: 'black',
+  lineWidth: 2
 };
 let drawing = false;
+let erasing = false;
 
 canvas.addEventListener('mousedown', onMouseDown, false);
 canvas.addEventListener('mouseup', onMouseUp, false);
@@ -58,7 +60,8 @@ function drawLine(x0, y0, x1, y1, color, emit){
     y0: y0 / h,
     x1: x1 / w,
     y1: y1 / h,
-    color: color
+    color: color,
+    lineWidth: current.lineWidth
   });
 }
 
@@ -108,8 +111,25 @@ function onMouseMove(e){
 }
 
 
+let color_map = {
+  "black": "black",
+  "red": "red",
+  "blue": "#3498db",
+  "green": "green",
+  "yellow": "rgb(253, 236, 0)",
+  "orange": "#e67e22",
+  "purple": "#9b59b6",
+  "pink": "#fd79a8",
+  "brown": "#834c32",
+  "grey": "rgb(194, 194, 194)"
+};
+
 function onColorUpdate(e){
-  current.color = e.target.className.split(' ')[1];
+  current.color = color_map[e.target.className.split(' ')[1]];
+  document.querySelector(
+    ".whiteboard"
+  ).style = `cursor: unset;`;
+  current.lineWidth = 2;
 }
 
 
@@ -137,12 +157,36 @@ function onDrawingEvent(data){
 // review later
 // make the canvas fill its parent
 function onResize() {
-  let ww = $("#canvas").parent().width();
-  let hh = $("#canvas").parent().height();
-
-  canvas.width = ww;
-  canvas.height = hh;
+  // let ww = $("#canvas").parent().width();
+  // let hh = $("#canvas").parent().height();
+  canvas.width = window.innerWidth;
+	canvas.height = window.innerHeight;
 }
+
+
+// eraser functionality
+// improve in terms of pen width
+function setEraser() {
+  current.color = "white";
+  document.querySelector(
+    ".whiteboard"
+  ).style = `cursor:url('../Images/erase.png'),auto;`;
+  current.lineWidth = 10;
+}
+
+//clear board
+function clearBoard() {
+  context.clearRect(0, 0, canvas.width, canvas.height);
+  context.fillStyle = "white";
+  context.fillRect(0, 0, canvas.width, canvas.height);
+  socket.emit('clearBoard');
+}
+
+socket.on('clearBoard', () => {
+  context.clearRect(0, 0, canvas.width, canvas.height);
+  context.fillStyle = "white";
+  context.fillRect(0, 0, canvas.width, canvas.height);
+})
 
 
 function download_wb(){

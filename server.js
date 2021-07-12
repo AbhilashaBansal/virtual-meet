@@ -36,10 +36,11 @@ io.on('connection', (socket) => {
         console.log("A user is connected:", userName, "User ID:", userId, "Room ID:", roomId);
         
         socket.on('drawing', (data) => socket.broadcast.emit('drawing', data));
+        socket.on('clearBoard', () => {
+            socket.to(roomId).emit('clearBoard');
+        });
 
-        // add messages functionality
-
-        // add disconnect fnlity
+        // messages functionality
         socket.on('message', (message, username) => {
             //send message to the same room
             io.to(roomId).emit('createMessage', message, username);
