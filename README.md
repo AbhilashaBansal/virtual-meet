@@ -25,14 +25,14 @@ Virtual Meet is a web based video calling application built for MS Engage Progra
    1. Clone the repository / Dowload the code
  
    2. Install the npm packages
-      sh
+      ```sh
       npm install
-            
+      ```      
    3. Start the server
-      sh
+      ```sh
       node server.js
-      
-### The website should now be running on localhost:3000
+      ```
+   The website should now be running on https://localhost:3000
 
 
 
