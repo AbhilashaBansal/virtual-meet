@@ -2,7 +2,7 @@
 Virtual Meet is a web based video calling application built for MS Engage Program 2021. Agile Development Methodology has been used to build the application.
 
 ## Tech Stack
-    1. HTML, CSS, Javascript
+- HTML, CSS, Javascript
     2. Bootstrap, jQuery
     3. Node.Js
     4. Express
@@ -20,6 +20,19 @@ Virtual Meet is a web based video calling application built for MS Engage Progra
     6. Collaborative Whiteboard (also downloadable as JPEG file)
     7. Collaborative Notepad (also downloadable as PDF)
     8. Simple & Intuitive UI
+    
+ ## Installation Guide
+   1. Clone the repository / Dowload the code
+ 
+   2. Install the npm packages
+      sh
+      npm install
+            
+   3. Start the server
+      sh
+      node server.js
+      
+### The website should now be running on localhost:3000
 
 
 
