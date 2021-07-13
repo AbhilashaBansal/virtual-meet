@@ -1,0 +1,248 @@
+
+/* Home Page CSS  */
+.custom-btn{
+    margin: 2%;
+    background-color: rgb(33, 118, 214);
+    min-width: 200px;
+    color: white;
+}
+
+#create-btn > a, #join-btn > a {
+    text-decoration: none;
+    color: white;
+}
+
+/* Room Page CSS  */
+
+/* Participant Videos Div CSS */
+video {
+    width: 45%;
+    /* height: 200px; */
+    /* to invert video stream along vertical axis  */
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    margin-bottom: 3%;
+}
+
+#my-video {
+    width: fit-content;
+    background-color: rgb(187, 187, 187);
+}
+
+#username {
+    font-size: large;
+}
+
+#videos-grid {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    /* flex-direction: column; */
+}
+#videos-grid > video {
+    width: 30%;
+}
+
+.show-later{
+    display: none;
+}
+
+/* everything is by design  */
+.video-div {
+    background-color: rgba(0, 0, 0, 0.705);
+    padding: 1%;
+}
+.wb-div {
+    background-color: rgba(0, 0, 0, 0.705);
+    padding: 1%;
+    overflow: scroll;
+}
+#wb-int-ali{
+    /* display: flex;
+    justify-content: center;
+    align-content: center; */
+    text-align: center;
+}
+#d2-wb {
+    display: none;
+}
+#d3-np {
+    background-color: rgba(0, 0, 0, 0.705);
+    display: none;
+}
+.chat-div {
+    background-color: rgba(0, 0, 0, 0.705);
+    padding: 1%;
+    min-height: 75vh;
+}
+
+
+/* Whiteboard Div CSS  */
+.whiteboard {
+    border: 2px solid black;
+    display: block;
+    margin: auto;
+    /* width: 100%; */
+}
+
+/* canvas {
+    background-color: white;
+    width: 100%;
+    height: 75vh;
+} */
+
+.colors {
+    display: inline-flex;
+}
+.tools {
+    display: inline-flex;
+    float: right;
+}
+
+.color {
+    display: inline-block;
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+}
+
+.color.black { background-color: black; }
+.color.red { background-color: red; }
+.color.green { background-color: green; }
+.color.blue { background-color: #3498db; }
+.color.yellow { background-color: rgb(253, 236, 0); }
+.color.orange { background-color: #e67e22; }
+.color.purple { background-color: #9b59b6; }
+.color.pink { background-color: #fd79a8; }
+.color.brown { background-color: #834c32; }
+.color.grey { background-color: rgb(194, 194, 194); }
+
+.eraser i, .clearb i, .save-wb i{
+    font-size: 2em;
+}
+.eraser, .clearb, .save-wb{
+    display: inline-block;
+    background-color: white;
+    border-radius: 50%;
+    height: 45px;
+    width: 45px;
+    justify-content: center;
+}
+
+
+/* Notepad Div CSS  */
+/* #cke_notepad {
+    height: 100;
+} */
+
+/* Chat Box CSS */
+.chat-div {
+    display: flex;
+    flex-direction: column;
+}
+
+.main_chat_window {
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+.messages{
+    padding-left: 0;
+    list-style: none;
+}
+
+.messages li {
+    margin: 2px;
+    color: black;
+    background-color: white;
+    /* border-radius: 10%; */
+}
+
+.main_message_container {
+    padding: 22px 12px;
+    display: flex;
+    background-color: beige;
+}
+
+.main_message_container input {
+    flex-grow: 1;
+    background-color: skyblue;
+    border: none;
+    color: black;
+}
+
+/* Bottom Controls Bar CSS  */
+.controls_bar {
+    width: 100vw;
+    position: fixed;
+    bottom: 0;
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+}
+
+.controls_block {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.controls_button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 10px;
+    min-width: 80px;
+    cursor: pointer;
+}
+.controls_button:hover {
+    background-color: #343434;
+    border-radius: 5px;
+}
+
+.controls_button i {
+    font-size: 24px;
+}
+
+.leave_meeting {
+    color: #EB534B;
+}
+
+.unmute-btn, .stop-btn {
+    color: #CC3B33;
+}
+
+.options {
+    height: auto;
+    width: 20%;
+    position: fixed;
+    left: 1vw;
+    bottom: 10vh;
+    display: none;
+    border: 2px solid black;
+}
+.meet-code-div {
+    height: auto;
+    width: 20%;
+    position: fixed;
+    left: 5vw;
+    bottom: 10vh;
+    display: none;
+    background-color: white;
+    text-align: center;
+    border: 2px solid black;
+}
+#copy-code-btn{
+    background-color: rgb(0, 132, 255);
+    color: white;
+}
+#copy-code-btn:hover{
+    background-color: rgb(0, 255, 191);
+    /* background-color: rgb(85, 166, 241); */
+}
+
+.options ul li:hover {
+    background-color: #c2bdbd;
+}

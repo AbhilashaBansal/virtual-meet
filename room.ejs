@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap  -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" 
+    integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="./CSS/style.css">
+
+    <!-- Editor JS  -->
+    <script src="https://cdn.ckeditor.com/4.9.1/standard/ckeditor.js"></script>
+    <title> Room </title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="./index.html">Teams Clone</a>
+          <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            </ul>
+            <span class="navbar-text">
+              Login/ Signup
+            </span>
+          </div> -->
+        </div>
+    </nav>
+    
+    <br>
+    <div class="container hide-later">
+        <div class="row text-center justify-content-center">
+            <div class="col-md-4 col-sm-6">
+                <div class="text-center" id="my-video">
+
+                </div>
+            </div>
+        </div>
+        <br><br>
+        <div class="row">
+            <div class="col text-center">
+                <h4 style="display: inline-block;">Enter your Name : </h4>
+                <input type="text" id="username"><br>
+                <button type="button" id="enter-btn" class="btn btn-info custom-btn">Enter Call</button>
+            </div>
+        </div>
+        
+    </div>
+
+    <div class="container-fluid show-later">
+        <div class="row">
+            <!-- Participant Videos ka Div  -->
+            <div class="col-md-9" id="d1-pv">
+                <div class="video-div">
+                    <h4 style="color: white;">In Call</h4>
+                    <div class="text-center" id="videos-grid">
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Whiteboard ka Div  -->
+            <div class="col-md-9" id="d2-wb">
+                <div class="wb-div" id="wb">
+                    <div id="wb-int-ali">
+                        <canvas class="whiteboard" id="canvas" width="1000" height="500"></canvas>
+                    </div>
+                    <div class="colors">
+                        <div class="color black"></div>
+                        <div class="color red"></div>
+                        <div class="color blue"></div>
+                        <div class="color green"></div>
+                        <div class="color yellow"></div>
+                        <div class="color orange"></div>
+                        <div class="color purple"></div>
+                        <div class="color pink"></div>
+                        <div class="color brown"></div>
+                        <div class="color grey"></div>
+                    </div>
+                    <div class="tools">
+                        <div class="eraser" id="eraser" onclick="setEraser()"><i class="fas fa-eraser"></i></div>
+                        <div class="clearb" id="clearb" onclick="clearBoard()"><i class="fas fa-trash-alt"></i></div>
+                        <div class="save-wb"><i class="fas fa-file-download" onclick="download_wb();"></i></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Notepad ka Div -->
+            <div class="col-md-9" id="d3-np">
+                <textarea id="notepad" name="editor1"></textarea>
+                <button id="b1" onclick="printHere();">Download as PDF</button>
+            </div>
+
+            <!-- <div class="col-md-9" id="d4-ls">
+                <button id="screen">Share Screen</button>
+            </div> -->
+            
+            <!-- Chatbox ka Div  -->
+            <div class="col-md-3">
+                <div class="chat-div">
+                    <h4 style="color: white;">Chat</h4>
+                    
+                    <div class="main_chat_window">
+                        <ul class="messages">
+                           
+                        </ul>
+                    </div>
+
+                    <div class="main_message_container">
+                        <input id="apna_msg" type="text" placeholder="Type message here...">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <!-- Meeting Options List -->
+    <div class="options">
+        <ul class="list-group">
+            <li class="list-group-item" id="l1-pv">Participant Videos</li>
+            <li class="list-group-item" id="l2-wb">Whiteboard</li>
+            <li class="list-group-item" id="l3-np">Notepad</li>
+          </ul>
+    </div>
+    <!-- Meeting Code Div -->
+    <div class="meet-code-div">
+        <p id="code"></p>
+        <button id="copy-code-btn">Copy</button>
+    </div>
+
+    <!-- Bottom Controls Bar -->
+    <div class="controls_bar">
+        <div class="controls_block" style="flex-grow: 3.5;">
+            <div class="controls_button options-btn" onclick="show_options();">
+                <i class="fas fa-caret-square-up" style="font-size: 30px;"></i>
+            </div>
+            <div class="controls_button share-code-btn" onclick="show_code();">
+                <i class="fas fa-share-alt-square" style="font-size: 30px;"></i>
+            </div>
+        </div>
+        <div class="controls_block" style="flex-grow: 4;">
+           <div onclick="mute_Unmute_my_Mic();" class="controls_button mute-btn">
+              <i class="fas fa-microphone"></i>
+              <span>Mute</span>
+           </div>
+           <div onclick="play_Stop_my_Video();" class="controls_button video-btn" >
+              <i class="fas fa-video"></i>
+              <span>Turn Off Video</span>
+           </div>
+
+           <div class="controls_block">
+                <div class="controls_button leave">
+                <span class="leave_meeting">Leave Meeting</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+<!-- jQuery  -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" 
+integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+<script>
+    // jo room.ejs render karte samay bheja tha, retrieving it here 
+    const room_id = "<%= roomId %>";
+    document.getElementById("code").innerText = room_id;
+
+    CKEDITOR.replace("editor1");
+    function printHere(e){
+        let ifr = document.getElementsByTagName("iframe")[0];
+        ifr.contentDocument.title = "Meeting Notes";
+        ifr.contentWindow.print();
+        // console.log(document.getElementById("notepad").value);
+    }
+</script>
+
+<!-- Icons  -->
+<script src="https://kit.fontawesome.com/c939d0e917.js"></script>
+
+<!-- Peer JS  -->
+<script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
+<!-- Socket IO  -->
+<script src="/socket.io/socket.io.js"></script>
+
+<script src="./JS/script.js"></script>
+<script src="./JS/whiteboard.js"></script>
+</html>
