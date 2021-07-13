@@ -30,7 +30,8 @@ myVideo.muted = true;
 let peer = new Peer (undefined, {
   path: '/peerjs',
   host: '/',
-  port: '443'
+  port: '443',
+  secure: true
 });
 let peers = {};
 
@@ -107,8 +108,12 @@ navigator.mediaDevices.getUserMedia({
 
 }).catch((er)=>{
   // check later
-  window.console.log("here");
+  window.console.log("Error in getting audio-video streams.");
   // addVideoStream(myVideo, stream);
+  let div = document.createElement('div');
+  div.style.textAlign = 'center';
+  div.innerText = "Please allow access to camera and microphone and reload the page to allow the app to run properly!";
+  document.getElementsByClassName("hide-later")[0].appendChild(div);
 })
 
 
@@ -173,7 +178,7 @@ function mute_Unmute_my_Mic () {
 }
 
 function play_Stop_my_Video () {
-  console.log(myVideoStream.getVideoTracks());
+  // console.log(myVideoStream.getVideoTracks());
   let enabled = myVideoStream.getVideoTracks()[0].enabled;
   if (enabled) {
     myVideoStream.getVideoTracks()[0].enabled = false;
@@ -234,8 +239,6 @@ function show_code () {
 
 $("#copy-code-btn").click(function(e){
   let copyTextarea = document.getElementById("code");
-  // copyTextarea.focus();
-  // copyTextarea.select();
   console.log(copyTextarea);
   let text = copyTextarea.innerText;
   navigator.clipboard.writeText(text).then(function() {
@@ -290,14 +293,14 @@ $("#l3-np").click(()=>{
   ifr.contentDocument.body.onkeydown = function(){
     // alert("Change aayo hai!");
     let saamaan = ifr.contentDocument.body.innerHTML;
-    console.log(saamaan);
+    // console.log(saamaan);
     socket.emit('editor-change', saamaan);
   }
   
   toolbar.onclick = function(){
     // alert("Change aayo hai!");
     let saamaan = ifr.contentDocument.body.innerHTML;
-    console.log(saamaan);
+    // console.log(saamaan);
     socket.emit('editor-change', saamaan);
   }
 })

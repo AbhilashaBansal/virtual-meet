@@ -52,11 +52,11 @@
             </div>
 
             <div class="col-md-6">
-                <button type="button" id="create-btn" class="btn btn-info custom-btn"><a href="/create_call"> Create A Call </a></button><br>
+                <button type="button" id="create-btn" class="btn btn-info custom-btn">Create A Call</button><br>
                 <button type="button" id="join-btn" class="btn btn-info custom-btn">Join A Call</button>
                 <div id="join-div">
                   <input type="text" name="meet-join-code" id="meet-join-code" placeholder="Enter Meet/ Room ID">
-                  <button id="go-to-meet">Go</button>
+                  <button id="go-to-meet" class="btn btn-info custom-btn">Go</button>
                 </div>
             </div>
         </div>
@@ -67,6 +67,10 @@
 <style>
   #join-div{
     display: none;
+    margin: 2%;
+  }
+  #meet-join-code {
+    font-size: large;
   }
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -78,6 +82,9 @@
     let roomid = document.getElementById("meet-join-code").value
     console.log(roomid);
     document.location = '/'+roomid;
+  })
+  $("#create-btn").click(()=>{
+    document.location = '/create_call';
   })
 </script>
 </html>
