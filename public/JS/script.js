@@ -30,7 +30,8 @@ myVideo.muted = true;
 let peer = new Peer (undefined, {
   path: '/peerjs',
   host: '/',
-  port: '3000'
+  port: '3000',
+  secure: true
 });
 let peers = {};
 
@@ -107,8 +108,12 @@ navigator.mediaDevices.getUserMedia({
 
 }).catch((er)=>{
   // check later
-  window.console.log("here");
+  window.console.log("Error in getting audio-video streams.");
   // addVideoStream(myVideo, stream);
+  let div = document.createElement('div');
+  div.style.textAlign = 'center';
+  div.innerText = "Please allow access to camera and microphone and reload the page to allow the app to run properly!";
+  document.getElementsByClassName("hide-later")[0].appendChild(div);
 })
 
 
