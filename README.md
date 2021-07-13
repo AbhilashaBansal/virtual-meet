@@ -3,13 +3,13 @@ Virtual Meet is a web based video calling application built for MS Engage Progra
 
 ## Tech Stack
 - HTML, CSS, Javascript
-    2. Bootstrap, jQuery
-    3. Node.Js
-    4. Express
-    4. Socket.io
-    5. WebRTC
-    6. PeerJS
-    7. CKEditor4
+- Bootstrap, jQuery
+- Node.Js
+- Express
+- Socket.io
+- WebRTC
+- PeerJS
+- CKEditor4
     
 ## Features:
     1. Video & Audio call/ conversation with multiple participants
